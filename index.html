@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script >
+        let humanScore = 0, computerScore = 0, str="",n = 0;
+        
+        playGame();
+        function playGame(){
+            let c =1;
+            while(c<6)
+            {
+                console.log(playRound(getHumanChoice(), getComputerChoice(Math.random())));           
+                c++;
+            }
+        }
+
+        function getComputerChoice(n){
+        
+            if (n <= 1 / 3) return "paper";
+            else if (n <= 2 / 3) return "scissors";
+            else return "rock";
+
+        }
+
+        function getHumanChoice()
+        {
+            const user = prompt(`enter "rock" or "paper" or "scissors" `);
+            str = user.toLowerCase();
+            if(str !="rock" && str!="paper" && str!="scissors")
+                return getHumanChoice();
+            return str;
+        }
+
+        function playRound(humanChoice, computerChoice)
+                {
+                    if (humanChoice === computerChoice)
+                        return `tie\n\nuser score = ${humanScore}\ncomputer score = ${computerScore}`;
+
+                    else if( humanChoice === "rock" && computerChoice === "paper" || humanChoice === "paper" && computerChoice === "scissors" || humanChoice === "scissors" && computerChoice === "rock" )
+                    {
+                        computerScore++;
+                        return `You lose! ${computerChoice} beats ${humanChoice}\nuser score = ${humanScore}\ncomputer score = ${computerScore}`;
+                    }
+                    else if( humanChoice === "rock" && computerChoice === "scissors" || humanChoice === "paper" && computerChoice === "rock" || humanChoice === "scissors" && computerChoice === "paper" )
+                    {
+                        humanScore++;
+                        return `You win! ${humanChoice} beats ${computerChoice}\nuser score = ${humanScore}\ncomputer score = ${computerScore}`;
+                    }
+                    
+
+                }
+        
+    </script>
+</body>
+</html>

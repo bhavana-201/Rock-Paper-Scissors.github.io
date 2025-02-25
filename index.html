@@ -17,6 +17,12 @@
                 console.log(playRound(getHumanChoice(), getComputerChoice(Math.random())));           
                 c++;
             }
+            if(humanScore > computerScore)
+                prompt(`YEE-HAW YOU WON!!\n your score - ${humanScore}\n computer score - ${computerScore}`);
+            else if(humanScore < computerScore)
+                prompt(`OUCH YOU LOST!!\n your score - ${humanScore}\n computer score - ${computerScore}`);
+            else 
+                prompt('CHILL BOTH WON ');
         }
 
         function getComputerChoice(n){

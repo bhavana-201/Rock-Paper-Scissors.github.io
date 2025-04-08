@@ -6,24 +6,50 @@
     <title>Document</title>
 </head>
 <body>
+    <div>
+        <button id="rock">ROCK</button>
+        <button id="paper">PAPER</button>
+        <button id="scissors">SCISSORS</button>
+    </div>
+    <div id= "result"></div>
     <script >
+        let msg = document.querySelector('#result');
         let humanScore = 0, computerScore = 0, str="",n = 0;
-        
-        playGame();
-        function playGame(){
-            let c =1;
-            while(c<6)
-            {
-                console.log(playRound(getHumanChoice(), getComputerChoice(Math.random())));           
-                c++;
+        let btns = document.querySelectorAll('button');
+        btns.forEach((button) =>{
+            button.addEventListener('click', () =>{
+                humanChoice = button.id;
+                computerChoice = getComputerChoice(Math.random());
+                msg.textContent = playRound(humanChoice, computerChoice);
+                if(humanScore  === 5) 
+                    endGame("you win <3");
+                if(computerScore === 5)
+                    endGame("computer winsu!");
+                if( (humanScore && computerScore) === 5)
+                    endGame("~TIE bitches~");    
+            });
+           
+
+        });
+        function endGame(message) {
+                msg.textContent = message;
+                btns.forEach(btn => btn.disabled = true);
             }
-            if(humanScore > computerScore)
-                prompt(`YEE-HAW YOU WON!!\n your score - ${humanScore}\n computer score - ${computerScore}`);
-            else if(humanScore < computerScore)
-                prompt(`OUCH YOU LOST!!\n your score - ${humanScore}\n computer score - ${computerScore}`);
-            else 
-                prompt('CHILL BOTH WON ');
-        }
+            
+        // function playGame(){
+        //     let c =1;
+        //     // while(c<6)
+        //     // {
+        //     //     console.log(playRound(getHumanChoice(), getComputerChoice(Math.random())));           
+        //     //     c++;
+        //     // }
+        //     if(humanScore > computerScore)
+        //         prompt(`YEE-HAW YOU WON!!\n your score - ${humanScore}\n computer score - ${computerScore}`);
+        //     else if(humanScore < computerScore)
+        //         prompt(`OUCH YOU LOST!!\n your score - ${humanScore}\n computer score - ${computerScore}`);
+        //     else 
+        //         prompt('CHILL BOTH WON ');
+        // }
 
         function getComputerChoice(n){
         
@@ -33,14 +59,14 @@
 
         }
 
-        function getHumanChoice()
-        {
-            const user = prompt(`enter "rock" or "paper" or "scissors" `);
-            str = user.toLowerCase();
-            if(str !="rock" && str!="paper" && str!="scissors")
-                return getHumanChoice();
-            return str;
-        }
+        // function getHumanChoice()
+        // {
+        //     const user = prompt(`enter "rock" or "paper" or "scissors" `);
+        //     str = user.toLowerCase();
+        //     if(str !="rock" && str!="paper" && str!="scissors")
+        //         return getHumanChoice();
+        //     return str;
+        // }
 
         function playRound(humanChoice, computerChoice)
                 {
